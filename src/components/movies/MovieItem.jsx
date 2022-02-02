@@ -1,6 +1,25 @@
 import { Box, Flex } from "@chakra-ui/react";
 
-const MovieItem = ({ poster, title, voteAverage, voteCount }) => {
+const MovieItem = ({
+  poster,
+  title,
+  voteAverage,
+  voteCount,
+  genreIds,
+  genres,
+}) => {
+  let currentGenres = [];
+
+  for (let key in genres) {
+    genreIds.forEach((genreId) => {
+      if (genreId === genres[key].id) {
+        currentGenres.push(genres[key].name);
+      }
+    });
+  }
+
+  console.log(currentGenres);
+
   return (
     <Flex w="100%" cursor="pointer">
       <Box
@@ -48,6 +67,23 @@ const MovieItem = ({ poster, title, voteAverage, voteCount }) => {
           </h2>
           <span>Rating: {voteAverage} / 10</span>
           <span>{voteCount} Votes</span>
+          <Box fontStyle="italic" fontSize="0.8rem" pt="0.5em">
+            {currentGenres.map((currentGenre) => {
+              return (
+                <span
+                  key={currentGenre}
+                  style={{
+                    backgroundColor: "white",
+                    color: "black",
+                    padding: "0 0.3em",
+                    borderRadius: "1em",
+                  }}
+                >
+                  {currentGenre}{" "}
+                </span>
+              );
+            })}
+          </Box>
         </Box>
       </Box>
     </Flex>

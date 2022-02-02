@@ -10,8 +10,7 @@ import "./App.css";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
-
-  console.log(movies);
+  const [genres, setGenres] = useState([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -27,13 +26,31 @@ export default function App() {
     fetchMovies();
   }, []);
 
+  useEffect(() => {
+    const fetchGenres = async () => {
+      const results = await fetch(
+        "https://api.themoviedb.org/3/genre/movie/list?api_key=0b7131c882252f4d2e4fbdb70636cf42&page=5"
+      );
+
+      const genres = await results.json();
+
+      setGenres(genres.genres);
+    };
+
+    fetchGenres();
+  }, []);
+
   return (
     <BrowserRouter>
       <Header />
       <div className="App">
         <Routes>
           <Route path="/" exact element={<Home />} />
-          <Route path="/movies" exact element={<MovieList movies={movies} />} />
+          <Route
+            path="/movies"
+            exact
+            element={<MovieList movies={movies} genres={genres} />}
+          />
           <Route path="/search" element={<Search />} />
         </Routes>
       </div>

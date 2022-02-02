@@ -2,7 +2,7 @@ import { Box, Flex } from "@chakra-ui/react";
 
 import MovieItem from "./MovieItem";
 
-const MovieList = ({ movies }) => {
+const MovieList = ({ movies, genres }) => {
   return (
     <Flex w="100vw" justify="center">
       <Box
@@ -19,6 +19,8 @@ const MovieList = ({ movies }) => {
               title={movie.original_title}
               voteAverage={movie.vote_average}
               voteCount={movie.vote_count}
+              genreIds={movie.genre_ids}
+              genres={genres}
             />
           );
         })}
