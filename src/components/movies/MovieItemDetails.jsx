@@ -34,6 +34,7 @@ const MovieItemDetails = ({ movies, genres }) => {
                   src={`https://image.tmdb.org/t/p/original/${movieItem.poster_path}`}
                   alt={movie.title}
                   style={{
+                    size: "100%",
                     borderRadius: "1em",
                     boxShadow: "2px 2px 5px grey",
                   }}
