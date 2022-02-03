@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/UI/Header";
 import Home from "./pages/Home";
 import MovieList from "./components/movies/MovieList";
+import MovieItemDetails from "./components/movies/MovieItemDetails";
 import Search from "./components/utils/Search";
 
 import "./App.css";
@@ -50,6 +51,10 @@ export default function App() {
             path="/movies"
             exact
             element={<MovieList movies={movies} genres={genres} />}
+          />
+          <Route
+            path="/movies/:id"
+            element={<MovieItemDetails movies={movies} genres={genres} />}
           />
           <Route path="/search" element={<Search />} />
         </Routes>

@@ -15,6 +15,7 @@ const MovieList = ({ movies, genres }) => {
           return (
             <MovieItem
               key={movie.id}
+              movieId={movie.id}
               poster={movie.poster_path}
               title={movie.original_title}
               voteAverage={movie.vote_average}
