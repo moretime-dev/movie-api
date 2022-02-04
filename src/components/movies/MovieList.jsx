@@ -4,7 +4,7 @@ import { Box, Flex } from "@chakra-ui/react";
 import MovieItem from "./MovieItem";
 import Pagination from "../UI/Pagination";
 
-const MovieList = () => {
+const MovieList = (props) => {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,6 +40,10 @@ const MovieList = () => {
   const onPageChangeHandler = (page) => {
     setCurrentPage(page);
   };
+
+  props.passMovies(movies);
+
+  props.passGenres(genres);
 
   return (
     <Box>

@@ -11,6 +11,14 @@ import "./App.css";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
+  const [genres, setGenres] = useState([]);
+
+  const passMovies = (movies) => {
+    setMovies(movies);
+  };
+  const passGenres = (genres) => {
+    setGenres(genres);
+  };
 
   return (
     <BrowserRouter>
@@ -18,11 +26,17 @@ export default function App() {
       <div className="App">
         <Routes>
           <Route path="/" exact element={<Home />} />
-          <Route path="/movies" exact element={<MovieList />} />
-          {/* <Route
+          <Route
+            path="/movies"
+            exact
+            element={
+              <MovieList passMovies={passMovies} passGenres={passGenres} />
+            }
+          />
+          <Route
             path="/movies/:id"
             element={<MovieItemDetails movies={movies} genres={genres} />}
-          /> */}
+          />
           <Route path="/search" element={<Search />} />
         </Routes>
       </div>
