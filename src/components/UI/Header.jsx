@@ -14,7 +14,7 @@ const Header = () => {
       color="white"
     >
       <NavLink to="/">HOME</NavLink>
-      <NavLink to="/movies">MOVIES</NavLink>
+      <NavLink to="/movies/1">MOVIES</NavLink>
       <NavLink to="/search">SEARCH</NavLink>
     </Box>
   );

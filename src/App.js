@@ -12,6 +12,7 @@ import "./App.css";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const passMovies = (movies) => {
     setMovies(movies);
@@ -20,23 +21,33 @@ export default function App() {
     setGenres(genres);
   };
 
+  const onPageChangeHandler = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <BrowserRouter>
       <Header />
       <div className="App">
         <Routes>
           <Route path="/" exact element={<Home />} />
+
           <Route
-            path="/movies"
-            exact
+            path="/movies/:page"
             element={
-              <MovieList passMovies={passMovies} passGenres={passGenres} />
+              <MovieList
+                passMovies={passMovies}
+                passGenres={passGenres}
+                onPageChange={onPageChangeHandler}
+                currentPage={currentPage}
+              />
             }
           />
           <Route
             path="/movies/:id"
             element={<MovieItemDetails movies={movies} genres={genres} />}
           />
+          {/* <Route path="/movies/:page" element={<MovieList />} /> */}
           <Route path="/search" element={<Search />} />
         </Routes>
       </div>

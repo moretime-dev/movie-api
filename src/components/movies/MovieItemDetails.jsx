@@ -8,8 +8,6 @@ const MovieItemDetails = ({ movies, genres }) => {
 
   const movie = movies.filter((movie) => movie.id === +id);
 
-  console.log(movie);
-
   let currentGenres = [];
 
   for (let key in genres) {
@@ -34,7 +32,7 @@ const MovieItemDetails = ({ movies, genres }) => {
                   src={`https://image.tmdb.org/t/p/original/${movieItem.poster_path}`}
                   alt={movie.title}
                   style={{
-                    size: "100%",
+                    width: "30vw",
                     borderRadius: "1em",
                     boxShadow: "2px 2px 5px grey",
                   }}

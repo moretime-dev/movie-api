@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Box, Flex } from "@chakra-ui/react";
 
 import MovieItem from "./MovieItem";
 import Pagination from "../UI/Pagination";
 
-const MovieList = (props) => {
+const MovieList = ({ passMovies, passGenres, onPageChange }) => {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+
+  // const params = useParams();
+
+  // console.log(params.page);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -41,9 +46,14 @@ const MovieList = (props) => {
     setCurrentPage(page);
   };
 
-  props.passMovies(movies);
+  useEffect(() => {
+    passMovies(movies);
+    passGenres(genres);
+  }, [movies, genres, passMovies, passGenres]);
 
-  props.passGenres(genres);
+  useEffect(() => {
+    onPageChange(currentPage);
+  }, [currentPage, onPageChange]);
 
   return (
     <Box>
