@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 
 import { Box, Flex } from "@chakra-ui/react";
 
+import imagePlaceholder from "../../assets/img/ef3-placeholder-image.jpg";
+
 const MovieItem = ({
   movieId,
   poster,
@@ -36,14 +38,25 @@ const MovieItem = ({
           boxShadow="2px 2px 5px black"
         >
           <Box backgroundColor="transparent">
-            <img
-              src={`https://image.tmdb.org/t/p/original/${poster}`}
-              alt={title}
-              style={{
-                width: "30em",
-                borderRadius: "0.5em",
-              }}
-            />
+            {poster ? (
+              <img
+                src={`https://image.tmdb.org/t/p/original/${poster}`}
+                alt={title}
+                style={{
+                  width: "30em",
+                  borderRadius: "0.5em",
+                }}
+              />
+            ) : (
+              <img
+                src={imagePlaceholder}
+                alt={title}
+                style={{
+                  width: "30em",
+                  borderRadius: "0.5em",
+                }}
+              />
+            )}
           </Box>
           <Box
             display="flex"

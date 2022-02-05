@@ -45,10 +45,35 @@ export default function App() {
           />
           <Route
             path="/movies/movie/:id"
-            element={<MovieItemDetails movies={movies} genres={genres} />}
+            element={
+              <MovieItemDetails
+                movies={movies}
+                genres={genres}
+                currentPage={currentPage}
+              />
+            }
           />
 
-          <Route path="/search" element={<Search />} />
+          <Route
+            path="/search"
+            element={
+              <Search
+                genres={genres}
+                passMovies={passMovies}
+                passGenres={passGenres}
+              />
+            }
+          />
+          <Route
+            path="/search/:search"
+            element={
+              <Search
+                genres={genres}
+                passMovies={passMovies}
+                passGenres={passGenres}
+              />
+            }
+          />
         </Routes>
       </div>
     </BrowserRouter>
