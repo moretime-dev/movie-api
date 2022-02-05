@@ -24,7 +24,7 @@ const MovieItemDetails = ({ movies, genres }) => {
         return (
           <Box m="4em auto" key={movieItem.id}>
             <Box mb="1em" fontSize="2rem" fontWeight="bold" color="white">
-              <Link to="/movies">BACK</Link>
+              <Link to="/movies/1">BACK</Link>
             </Box>
             <Box w="80vw" display="flex">
               <Box w="100%">

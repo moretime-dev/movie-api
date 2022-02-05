@@ -22,7 +22,7 @@ const MovieItem = ({
   }
 
   return (
-    <Link to={`/movies/${movieId}`}>
+    <Link to={`/movies/movie/${movieId}`}>
       <Flex w="100%" cursor="pointer">
         <Box
           display="flex"

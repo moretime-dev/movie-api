@@ -44,10 +44,10 @@ export default function App() {
             }
           />
           <Route
-            path="/movies/:id"
+            path="/movies/movie/:id"
             element={<MovieItemDetails movies={movies} genres={genres} />}
           />
-          {/* <Route path="/movies/:page" element={<MovieList />} /> */}
+
           <Route path="/search" element={<Search />} />
         </Routes>
       </div>

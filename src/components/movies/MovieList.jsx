@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
 import { Box, Flex } from "@chakra-ui/react";
 
 import MovieItem from "./MovieItem";
@@ -8,16 +9,15 @@ import Pagination from "../UI/Pagination";
 const MovieList = ({ passMovies, passGenres, onPageChange }) => {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
 
-  // const params = useParams();
-
-  // console.log(params.page);
+  const params = useParams();
+  const pageFromParams = params.page;
+  const [currentPage, setCurrentPage] = useState(+pageFromParams);
 
   useEffect(() => {
     const fetchMovies = async () => {
       const results = await fetch(
-        `https://api.themoviedb.org/3/discover/movie?api_key=0b7131c882252f4d2e4fbdb70636cf42&page=${currentPage}`
+        `https://api.themoviedb.org/3/discover/movie?api_key=0b7131c882252f4d2e4fbdb70636cf42&page=${+pageFromParams}`
       );
 
       const movies = await results.json();
@@ -26,7 +26,7 @@ const MovieList = ({ passMovies, passGenres, onPageChange }) => {
     };
 
     fetchMovies();
-  }, [currentPage]);
+  }, [pageFromParams]);
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -42,10 +42,6 @@ const MovieList = ({ passMovies, passGenres, onPageChange }) => {
     fetchGenres();
   }, []);
 
-  const onPageChangeHandler = (page) => {
-    setCurrentPage(page);
-  };
-
   useEffect(() => {
     passMovies(movies);
     passGenres(genres);
@@ -54,6 +50,10 @@ const MovieList = ({ passMovies, passGenres, onPageChange }) => {
   useEffect(() => {
     onPageChange(currentPage);
   }, [currentPage, onPageChange]);
+
+  const onPageChangeHandler = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <Box>
